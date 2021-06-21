@@ -64,6 +64,7 @@ public class Empleada {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+        this.categoria.agregarEmpleada(this); //relacion bidereccional.
     }
 
     public BigDecimal getSueldo() {

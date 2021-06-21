@@ -57,7 +57,11 @@ public class Categoria {
         this.empleadas = empleadas;
     }
 
-    
+    public void agregarEmpleada (Empleada empleada){
+
+        this.empleadas.add(empleada);  //aca se crea la relacion bidereccional
+
+    }
 
     
 
