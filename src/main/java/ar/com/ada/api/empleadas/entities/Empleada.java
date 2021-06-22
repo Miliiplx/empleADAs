@@ -24,6 +24,7 @@ public class Empleada {
 
     private BigDecimal sueldo;
 
+    @Column(name = "estado_id")
     private int estado;
 
     @Column(name = "fecha_alta")

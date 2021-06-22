@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import javassist.expr.NewArray;
-
 @Entity
 @Table(name = "categoria")
 public class Categoria {
