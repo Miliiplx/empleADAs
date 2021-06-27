@@ -15,6 +15,7 @@ public class CategoriaService {
     @Autowired
     CategoriaRepository repo;
 
+
     public void crearCategoria(Categoria categoria){
         repo.save(categoria);
     }

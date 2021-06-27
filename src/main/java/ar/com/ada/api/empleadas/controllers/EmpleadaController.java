@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,6 +64,27 @@ public class EmpleadaController {
 
         return ResponseEntity.ok(empleada);
 
+    }
+
+    @DeleteMapping("/empleados/{id}")
+    public ResponseEntity<GenericResponse> bajaEmpleada(@PathVariable Integer id){
+
+        service.bajaEmpleadaPorId(id);
+
+        GenericResponse respuesta = new GenericResponse();
+        respuesta.isOk = true;
+        respuesta.message = "La empleada fue dada de baja con éxito";
+
+        return ResponseEntity.ok(respuesta);
+        
+    }
+
+    @GetMapping("/empleados/categorias/{catId}")
+    public ResponseEntity<List<Empleada>> obtenerEmpleadasPorCategoria(@PathVariable Integer catId){
+
+        List<Empleada> empleadas = service.traerEmpleadaPorCategoria(catId);
+
+        return ResponseEntity.ok(empleadas);
     }
 
 }
