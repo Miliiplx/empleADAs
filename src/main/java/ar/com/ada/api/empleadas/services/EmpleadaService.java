@@ -1,5 +1,6 @@
 package ar.com.ada.api.empleadas.services;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -59,6 +60,19 @@ public class EmpleadaService {
 
         return categoria.getEmpleadas();
         
+    }
+
+    public void guardar(Empleada empleada) {
+
+        repo.save(empleada);
+    }
+
+    public void actualizarSueldo(Integer id, BigDecimal sueldoNuevo) {
+
+        Empleada empleada = buscarEmpleada(id);
+        empleada.setSueldo(sueldoNuevo);
+        this.guardar(empleada);
+
     }
 
 

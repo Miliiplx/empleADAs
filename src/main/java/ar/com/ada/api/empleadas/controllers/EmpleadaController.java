@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ import ar.com.ada.api.empleadas.entities.Categoria;
 import ar.com.ada.api.empleadas.entities.Empleada;
 import ar.com.ada.api.empleadas.entities.Empleada.EstadoEmpleadaEnum;
 import ar.com.ada.api.empleadas.models.request.InfoEmpleadaNueva;
+import ar.com.ada.api.empleadas.models.request.SueldoNuevoEmpleada;
 import ar.com.ada.api.empleadas.models.response.GenericResponse;
 import ar.com.ada.api.empleadas.services.CategoriaService;
 import ar.com.ada.api.empleadas.services.EmpleadaService;
@@ -85,6 +87,22 @@ public class EmpleadaController {
         List<Empleada> empleadas = service.traerEmpleadaPorCategoria(catId);
 
         return ResponseEntity.ok(empleadas);
+    }
+
+    @PutMapping("/empleados/{id}/sueldos")
+
+    public ResponseEntity<GenericResponse> modificarSueldo(@PathVariable Integer id,@RequestBody SueldoNuevoEmpleada sueldoNuevoInfo) {
+
+        service.actualizarSueldo(id, sueldoNuevoInfo.sueldoNuevo);
+
+        GenericResponse respuesta = new GenericResponse();
+        respuesta.isOk = true;
+        respuesta.message = "La modificación del sueldo fue realizado con éxito";
+
+        return ResponseEntity.ok(respuesta);
+
+
+
     }
 
 }
