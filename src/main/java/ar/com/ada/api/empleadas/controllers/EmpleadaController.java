@@ -53,6 +53,7 @@ public class EmpleadaController {
         empleada.setEstado(EstadoEmpleadaEnum.ACTIVO);
 
         service.crearEmpleada(empleada);
+        
         respuesta.isOk = true;
         respuesta.id = empleada.getEmpleadaId();
         respuesta.message = "La empleada fue creada con éxito.";
@@ -63,6 +64,9 @@ public class EmpleadaController {
     public ResponseEntity<Empleada> getEmpleadaPorId(@PathVariable Integer id){
 
         Empleada empleada = service.buscarEmpleada(id);
+        if(empleada == null){
+            return ResponseEntity.notFound().build();
+        }
 
         return ResponseEntity.ok(empleada);
 
